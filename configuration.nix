@@ -171,12 +171,12 @@
     gnome-themes-extra
 
 
-    wineWowPackages.stableFull     # ← paling direkomendasikan (stable + full dependencies)
+    # wineWowPackages.stableFull     # ← paling direkomendasikan (stable + full dependencies)
     # atau kalau mau versi experimental:
     # wineWowPackages.stagingFull
     # wineWowPackages.unstableFull   # biasanya lebih baru
 
-    winetricks                     # sangat berguna untuk install font, directx, vcrun, dll
+    # winetricks                     # sangat berguna untuk install font, directx, vcrun, dll
   
     inputs.antigravity-nix.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
@@ -249,6 +249,6 @@
   myLaptop.autoCpufreq.aggressive = true;
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
-  system.stateVersion = "25.05";
+  system.stateVersion = "24.11";
 
 }
