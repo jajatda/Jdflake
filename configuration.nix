@@ -1,4 +1,4 @@
-{ config, lib, pkgs, inputs, ... }:
+{ config, lib, pkgs, inputs, pkgs-2511, pkgs-unstable,... }:
 
 {
   imports =
@@ -108,7 +108,7 @@
   #   packages = with pkgs; [];
   # };
 
-  programs.adb.enable = true;
+  # programs.adb.enable = true;
 
   users.users.jd = {
     isNormalUser = true;
@@ -121,7 +121,7 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-  programs.firefox.enable = true;
+  # programs.firefox.enable = true;
   # programs.dms-shell.enable = true;
   programs.ssh.startAgent = true;
 
@@ -138,6 +138,7 @@
     gparted
     thinkfan
     # auto-cpufreq
+    android-tools
 
     file-roller
     unrar
@@ -145,14 +146,14 @@
     flac
 
     brightnessctl
-    vscode
-    firefox
+    pkgs-unstable.vscode
+    pkgs-unstable.firefox
     cava
     ranger
     st
     dmenu
     feh
-    neofetch
+    fastfetch
     pfetch
     ntfs3g
     p7zip
@@ -171,12 +172,6 @@
     gnome-themes-extra
 
 
-    # wineWowPackages.stableFull     # ← paling direkomendasikan (stable + full dependencies)
-    # atau kalau mau versi experimental:
-    # wineWowPackages.stagingFull
-    # wineWowPackages.unstableFull   # biasanya lebih baru
-
-    # winetricks                     # sangat berguna untuk install font, directx, vcrun, dll
   
     inputs.antigravity-nix.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
