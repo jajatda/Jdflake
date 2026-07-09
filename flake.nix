@@ -43,24 +43,24 @@
       };
       modules = [
         ./configuration.nix
-        {
-          nixpkgs.overlays = [
-            (final: prev: {
+        # {
+        #   nixpkgs.overlays = [
+        #     (final: prev: {
 
-              # Override default packages with specific versions from nixpkgs-2511
-              obs-studio = (import nixpkgs-2511 { 
-                system = "x86_64-linux";
-                config.allowUnfree = true;
-              }).obs-studio;
+        #       # Override default packages with specific versions from nixpkgs-2511
+        #       obs-studio = (import nixpkgs-2511 { 
+        #         system = "x86_64-linux";
+        #         config.allowUnfree = true;
+        #       }).obs-studio;
 
-              steam = (import nixpkgs-2511 { 
-                system = "x86_64-linux";
-                config.allowUnfree = true;
-              }).steam;
+        #       steam = (import nixpkgs-2511 { 
+        #         system = "x86_64-linux";
+        #         config.allowUnfree = true;
+        #       }).steam;
 
-            })
-          ];
-        }
+        #     })
+        #   ];
+        # }
         ./modules/vm.nix
         ./modules/thinkfan.nix
         ./modules/auto-cpufreq.nix
