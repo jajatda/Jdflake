@@ -4,23 +4,25 @@
 layout {
     gaps 4
 
-    border {
-        width 0
-    }
+    // border {
+    //     width 0
+    // }
 
-    focus-ring {
-        width 0
-    }
+    // focus-ring {
+    //     width 0
+    // }
 
     background-color "transparent"
 
     focus-ring {
+        width 0
         active-color   "#d0bcff"
         inactive-color "#948f99"
         urgent-color   "#f2b8b5"
     }
 
     border {
+        width 0
         active-color   "#d0bcff"
         inactive-color "#948f99"
         urgent-color   "#f2b8b5"
@@ -42,7 +44,7 @@ layout {
 }
 
 recent-windows {
-    
+
     highlight {
         corner-radius 12
     }

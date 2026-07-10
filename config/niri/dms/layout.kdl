@@ -24,9 +24,9 @@ window-rule {
 
 layer-rule {
     exclude namespace="^dms:bar$"
-    background-effect {
-        xray false
-    }
+    // background-effect {
+    //     xray false
+    // }
     //from wpblur
     match namespace="dms:blurwallpaper"
     place-within-backdrop true
