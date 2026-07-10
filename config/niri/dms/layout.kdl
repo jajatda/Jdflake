@@ -3,17 +3,17 @@
 // ! CHANGES WILL BE OVERWRITTEN !
 // ! PLACE YOUR CUSTOM CONFIGURATION ELSEWHERE !
 
-layout {
-    gaps 4
-
-    border {
-        width 0
-    }
-
-    focus-ring {
-        width 0
-    }
-}
+// layout {
+//     gaps 4
+// 
+//     border {
+//         width 0
+//     }
+// 
+//     focus-ring {
+//         width 0
+//     }
+// }
 
 window-rule {
     geometry-corner-radius 12
@@ -27,4 +27,7 @@ layer-rule {
     background-effect {
         xray false
     }
+    //from wpblur
+    match namespace="dms:blurwallpaper"
+    place-within-backdrop true
 }

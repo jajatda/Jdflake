@@ -2,6 +2,16 @@
 // Remove `include "dms/colors.kdl"` from your config to override.
 
 layout {
+    gaps 4
+
+    border {
+        width 0
+    }
+
+    focus-ring {
+        width 0
+    }
+
     background-color "transparent"
 
     focus-ring {
@@ -32,6 +42,11 @@ layout {
 }
 
 recent-windows {
+    
+    highlight {
+        corner-radius 12
+    }
+
     highlight {
         active-color   "#4f378b"
         urgent-color   "#f2b8b5"
