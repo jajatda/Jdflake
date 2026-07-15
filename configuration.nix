@@ -62,6 +62,7 @@
   # programs.niri.enable = true;
 
   # services.xserver.windowManager.dwm.enable = true;
+
   services.xserver.displayManager.lightdm = {
     enable = true;
     greeters.slick = {
@@ -79,34 +80,26 @@
     };
   };
   services.xserver.windowManager.dwm = {
-    enable = false;
-    package = pkgs.dwm.overrideAttrs {
-      src = ./config/dwm;
-    };
+    enable = true;
+    package = pkgs.dwm.overrideAttrs (old: {
+      src = ./config/chadwm/chadwm;
+
+      buildInputs = old.buildInputs ++ [
+        pkgs.imlib2
+      ];
+
+      nativeBuildInputs = old.nativeBuildInputs ++ [
+        pkgs.pkg-config
+      ];
+    });
   };
   services.xserver.desktopManager.xfce.enable = true;
   services.gnome.gnome-keyring.enable = true;
   services.gnome.gcr-ssh-agent.enable = false;
 
-  # services.desktopManager.lomiri.enable = true;
-  # services.displayManager.defaultSession = "lomiri";
+  systemd.user.services.niri-flake-polkit.enable = false;
 
 
-  # services.displayManager.ly.enable = true;
-  # services.xserver = {
-  #   enable = true;
-  #   autoRepeatDelay = 200;
-  #   autoRepeatInterval = 35;
-  #   windowManager.qtile.enable = true;
-  # };
-
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  # users.users.jajatda = {
-  #   isNormalUser = true;
-  #   description = "Jajat Darajat";
-  #   extraGroups = [ "networkmanager" "wheel" ];
-  #   packages = with pkgs; [];
-  # };
 
   # programs.adb.enable = true;
 
@@ -114,16 +107,16 @@
     isNormalUser = true;
     # uid = 1000;
     description = "jd";
-    extraGroups = [ "networkmanager" "wheel" "adbusers" ];
+    extraGroups = [ "networkmanager" "wheel" "adbusers" "docker" ];
     packages = with pkgs; [];
   };
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
-
-  # programs.firefox.enable = true;
-  # programs.dms-shell.enable = true;
   programs.ssh.startAgent = true;
+
+  programs.niri.enable = true;
+  programs.dms-shell.enable = true;
 
   environment.systemPackages = with pkgs; [
     vim
@@ -139,6 +132,8 @@
     thinkfan
     # auto-cpufreq
     android-tools
+    rofi
+    eww
 
     file-roller
     unrar
@@ -157,6 +152,9 @@
     pfetch
     ntfs3g
     p7zip
+    ffmpeg
+
+    zed-editor
 
 
     neovim
@@ -171,13 +169,17 @@
     adwaita-icon-theme
     gnome-themes-extra
 
+    #distrobox:
+    distrobox
+    xhost
+
 
   
     inputs.antigravity-nix.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
    programs.steam.enable = true;
 
-   programs.obs-studio = {
+  programs.obs-studio = {
     enable = true;
     # Optional: Enable Nvidia hardware acceleration
     package = (pkgs.obs-studio.override { cudaSupport = true; });
@@ -187,6 +189,20 @@
       obs-vkcapture    # Vulkan game capture
       obs-pipewire-audio-capture
     ];
+  };
+
+  virtualisation.docker = {
+    enable = true;
+    # kalau dipakai untuk distrobox lebih baik aktifkan ini:
+    # rootless = {
+    #   enable = true;
+    #   setSocketVariable = true;
+    # };
+  };
+  
+  virtualisation.podman = {
+    enable = true;
+    dockerCompat = false;
   };
 
 
@@ -240,8 +256,8 @@
 
 
   # myLaptop.thinkfan.enable = true;
-  myLaptop.autoCpufreq.enable = true;
-  myLaptop.autoCpufreq.aggressive = true;
+  myLaptop.autoCpufreq.enable = false;
+  myLaptop.autoCpufreq.aggressive = false;
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   system.stateVersion = "24.11";

@@ -14,18 +14,24 @@
 
     antigravity-nix.url = "github:jacopone/antigravity-nix";
 
-    # niri = {
-    #   url = "github:sodiboo/niri-flake";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
+    niri = {
+      url = "github:sodiboo/niri-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
-    # dms = {
-    #   url = "github:AvengeMedia/DankMaterialShell/stable";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
+    dms = {
+      url = "github:AvengeMedia/DankMaterialShell/stable";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    chadwm-src = {
+      url = "github:siduck/chadwm";
+      flake = false;
+    };
+
   };
 
-  outputs = { self, nixpkgs, nixpkgs-2511, nixpkgs-unstable, home-manager, ... }@inputs: {
+  outputs = { self, nixpkgs, nixpkgs-2511, nixpkgs-unstable, home-manager, chadwm-src, ... }@inputs: {
     nixosConfigurations.x230t = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       specialArgs = { 
@@ -43,6 +49,7 @@
       };
       modules = [
         ./configuration.nix
+        # inputs.niri.nixosModules.niri
         # {
         #   nixpkgs.overlays = [
         #     (final: prev: {
@@ -61,6 +68,26 @@
         #     })
         #   ];
         # }
+        #  ({ pkgs, ... }:{
+          
+        #     services.xserver.windowManager.dwm = {
+        #       enable = true;
+        #       package = pkgs.dwm.overrideAttrs {
+        #         src = ./config/2dwm;
+
+        #       };
+        #       # package = pkgs.dwm.overrideAttrs (old: {
+        #       #   src = chadwm-src;
+        #       #   sourceRoot = "source/chadwm";
+
+        #       #   buildInputs = (old.buildInputs or []) ++ [
+        #       #     pkgs.imlib2
+        #       #   ];
+        #       # });
+        #     };
+  
+        #   })  
+        ./modules/php.nix
         ./modules/vm.nix
         ./modules/thinkfan.nix
         ./modules/auto-cpufreq.nix
@@ -75,6 +102,7 @@
           home-manager = {
             useGlobalPkgs = true;
             useUserPackages = true;
+            extraSpecialArgs = { inherit inputs; };
             users.jd = import ./home.nix;
             backupFileExtension = "backup";
           };
