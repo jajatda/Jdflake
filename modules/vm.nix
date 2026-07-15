@@ -13,6 +13,7 @@
     bridge-utils
     libguestfs 
     virtiofsd # Tambahkan ini agar binary tersedia di system path
+    OVMF
   ];
 
   # Mengaktifkan daemon libvirtd
