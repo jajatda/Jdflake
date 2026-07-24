@@ -64,7 +64,7 @@
   # services.xserver.windowManager.dwm.enable = true;
 
   services.xserver.displayManager.lightdm = {
-    enable = true;
+    enable = false;
     greeters.slick = {
         enable = true;
 
@@ -117,14 +117,16 @@
 
   programs.niri.enable = true;
   programs.dms-shell.enable = true;
+  # programs.xwayland.enable = true;
+  
 
   environment.systemPackages = with pkgs; [
     vim
     wget
     git
     rsync
-    alacritty
-    kitty
+    # alacritty
+    # kitty
     wofi
     gnome-keyring
     seahorse
@@ -134,6 +136,7 @@
     android-tools
     rofi
     eww
+    xwayland-satellite
 
     file-roller
     unrar
@@ -143,6 +146,8 @@
     brightnessctl
     pkgs-unstable.vscode
     pkgs-unstable.firefox
+    pkgs-unstable.brave
+    sublime3
     cava
     ranger
     st
@@ -164,20 +169,35 @@
     nodejs
     gcc
 
+    #java
+    jdk
+
+    #rust
+    rustup
+    rust-analyzer
+    pkg-config
+
     #theme
     papirus-icon-theme
     adwaita-icon-theme
     gnome-themes-extra
 
+
     #distrobox:
     distrobox
     xhost
+
+    emacs         # Menambahkan Emacs dasar
+    # ripgrep       # Sangat direkomendasikan oleh Doom | sudah ada
+    fd            # Sangat direkomendasikan oleh Doom
 
 
   
     inputs.antigravity-nix.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
-   programs.steam.enable = true;
+
+  programs.nix-ld.enable = true;
+  programs.steam.enable = true;
 
   programs.obs-studio = {
     enable = true;
@@ -207,7 +227,9 @@
 
 
   fonts.packages = with pkgs; [
+    # nerd-fonts
     nerd-fonts.jetbrains-mono
+    nerd-fonts.fira-code
     amiri
     noto-fonts
   ];

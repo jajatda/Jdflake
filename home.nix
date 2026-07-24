@@ -11,11 +11,12 @@
       btw = "echo i use nixos, btw";
     };
   };
-  # imports = [
+  imports = [
+    ./modules/terminal.nix
   #   # inputs.niri.homeModules.niri
   #   inputs.dms.homeModules.dank-material-shell
   #   inputs.dms.homeModules.niri
-  # ];
+  ];
 
   # programs.dank-material-shell = {
   #   enable = true;
@@ -75,6 +76,9 @@
     evince
     vlc
     xournalpp
+    rnote
+    zoom-us
+    # inputs.nixpkgs-unstable.brave
     # apacheOpenOffice
   ];
 

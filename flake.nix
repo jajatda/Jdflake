@@ -87,10 +87,16 @@
         #     };
   
         #   })  
+        ./modules/gnome.nix
+        ./modules/latex-arabic.nix
         ./modules/php.nix
         ./modules/vm.nix
         ./modules/thinkfan.nix
         ./modules/auto-cpufreq.nix
+        ./modules/waydroid.nix
+        ({ config, ... }: {
+            services.custom.waydroid.enable = true;
+        })
         # {
         #   myLaptop.autoCpufreq = {
         #     enable = true;          # ini yang wajib
