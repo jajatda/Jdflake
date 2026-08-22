@@ -20,6 +20,9 @@
     # totem
     # yelp
   ];
+  environment.systemPackages = with pkgs; [
+    gnome-tweaks
+  ];
 
   # services.gnome.evolution-data-server.enable = false;
   # services.gnome.gnome-browser-connector.enable = false;

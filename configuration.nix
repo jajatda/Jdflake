@@ -26,6 +26,28 @@
    "resume_offset=9414656"
   ];
 
+  hardware.enableRedistributableFirmware = true;
+  boot.kernelModules = [ "tp_smapi" "acpi_call" ];
+  # Membuat systemd service untuk mengisi file sysfs saat booting
+  systemd.services.battery-threshold = {
+    description = "Set Battery Charge Thresholds";
+    wantedBy = [ "multi-user.target" ];
+    after = [ "multi-user.target" ];
+    serviceConfig = {
+      Type = "oneshot";
+      # Memastikan dijalankan sebagai root secara eksplisit
+      User = "root";
+      ExecStart = pkgs.writeShellScript "set-battery-threshold" ''
+        sleep 3
+        
+        # Menggunakan tee dengan sudo/root untuk memaksa menulis ke file sysfs
+        echo 90 | ${pkgs.coreutils}/bin/tee /sys/class/power_supply/BAT0/charge_start_threshold > /dev/null
+        echo 95 | ${pkgs.coreutils}/bin/tee /sys/class/power_supply/BAT0/charge_stop_threshold > /dev/null
+      '';
+    };
+  };
+
+
   networking.hostName = "x230t";
   networking.networkmanager.enable = true;
 
@@ -115,8 +137,8 @@
   nixpkgs.config.allowUnfree = true;
   programs.ssh.startAgent = true;
 
-  programs.niri.enable = true;
-  programs.dms-shell.enable = true;
+  programs.niri.enable = false;
+  programs.dms-shell.enable = false;
   # programs.xwayland.enable = true;
   
 
@@ -137,16 +159,23 @@
     rofi
     eww
     xwayland-satellite
+    libinput
+    mpv
+    mpvpaper
 
     file-roller
     unrar
     strawberry
     flac
+    inkscape
+    telegram-desktop
+    wvkbd
 
     brightnessctl
     pkgs-unstable.vscode
     pkgs-unstable.firefox
     pkgs-unstable.brave
+    pkgs-unstable.vlc
     sublime3
     cava
     ranger

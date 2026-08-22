@@ -74,13 +74,19 @@
 
   home.packages = with pkgs; [
     evince
-    vlc
+    # vlc
     xournalpp
     rnote
     zoom-us
     # inputs.nixpkgs-unstable.brave
     # apacheOpenOffice
   ];
+
+  dconf.settings = {
+    "org/gnome/settings-daemon/plugins/media-keys" = {
+      volume-step = 1;
+    };
+  };
 
   # Pastikan module git diaktifkan
   programs.git = {

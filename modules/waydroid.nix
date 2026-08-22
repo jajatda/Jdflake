@@ -12,6 +12,7 @@ in {
   config = mkIf cfg.enable {
     # Mengaktifkan kontainer utama Waydroid
     virtualisation.waydroid.enable = true;
+    virtualisation.waydroid.package = pkgs.waydroid-nftables;
 
     # 2. AKTIFKAN LXC & KERNEL SETTING UNTUK JARINGAN KONTAINER
     # Waydroid berjalan di atas LXC, kita butuh opsi ini agar RTNETLINK diizinkan
