@@ -147,51 +147,55 @@
     wget
     git
     rsync
-    # alacritty
-    # kitty
-    wofi
-    gnome-keyring
-    seahorse
-    gparted
-    thinkfan
-    # auto-cpufreq
     android-tools
     rofi
     eww
     xwayland-satellite
     libinput
+    flac
+    brightnessctl
+    wvkbd
+    thinkfan
+    # auto-cpufreq
+
+    gnome-keyring
+    gparted
+    seahorse
+
+
+    # alacritty
+    # kitty
+    wofi
     mpv
     mpvpaper
-
     file-roller
-    unrar
     strawberry
-    flac
     inkscape
     telegram-desktop
-    wvkbd
-
-    brightnessctl
     pkgs-unstable.vscode
     pkgs-unstable.firefox
     pkgs-unstable.brave
-    pkgs-unstable.vlc
+    vlc
     sublime3
     cava
+    zed-editor
     ranger
     st
     dmenu
+
     feh
     fastfetch
     pfetch
     ntfs3g
+    unrar
     p7zip
     ffmpeg
 
-    zed-editor
-
 
     neovim
+
+    arch-install-scripts
+
     ripgrep
     nil
     nixpkgs-fmt
@@ -224,6 +228,14 @@
   
     inputs.antigravity-nix.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
+
+
+  programs.appimage = {
+    enable = true;
+    # Optional: Enable AppImageLauncher integration
+    # appimagelauncherIntegration.enable = true;
+    binfmt = true;
+  };
 
   programs.nix-ld.enable = true;
   programs.steam.enable = true;

@@ -76,8 +76,14 @@
     evince
     # vlc
     xournalpp
-    rnote
+    foliate
+    # rnote
+    gimp
+    kdePackages.kdenlive
+    transmission_4-gtk
     zoom-us
+    # inputs.zen-browser.packages."${system}".specific
+    inputs.zen-browser.packages."${system}".default
     # inputs.nixpkgs-unstable.brave
     # apacheOpenOffice
   ];

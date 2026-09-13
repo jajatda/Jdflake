@@ -29,6 +29,15 @@
       flake = false;
     };
 
+    zen-browser = {
+      url = "github:0xc000022070/zen-browser-flake";
+      inputs = {
+        # IMPORTANT: To ensure compatibility with the latest Firefox version, use nixpkgs-unstable.
+        nixpkgs.follows = "nixpkgs-unstable";
+        home-manager.follows = "home-manager";
+      };
+    };
+
   };
 
   outputs = { self, nixpkgs, nixpkgs-2511, nixpkgs-unstable, home-manager, chadwm-src, ... }@inputs: {
@@ -108,7 +117,7 @@
           home-manager = {
             useGlobalPkgs = true;
             useUserPackages = true;
-            extraSpecialArgs = { inherit inputs; };
+            extraSpecialArgs = { inherit inputs; system = "x86_64-linux"; };
             users.jd = import ./home.nix;
             backupFileExtension = "backup";
           };
