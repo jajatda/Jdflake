@@ -12,9 +12,9 @@
 
   # Display Manager
   services.displayManager.sddm = {
-    enable = false;
+    enable = true;
     wayland.enable = true;         # sangat disarankan
-    # theme = "breeze";            # default sudah bagus
+     theme = "breeze";            # default sudah bagus
   };
 
   # Pastikan X server aktif (dibutuhkan beberapa komponen)
