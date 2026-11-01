@@ -75,10 +75,10 @@
   };
 
   services.xserver.enable = true;
-  services.displayManager.sddm = {
-    enable = false;
-    wayland.enable = true;
-  };
+  #services.displayManager.sddm = {
+  #  enable = true;
+  #  wayland.enable = true;
+  #};
 
   # programs.hyprland.enable = true;
   # programs.niri.enable = true;
@@ -330,6 +330,7 @@
   # myLaptop.thinkfan.enable = true;
   myLaptop.autoCpufreq.enable = false;
   myLaptop.autoCpufreq.aggressive = false;
+  myLaptop.gnome.enable = false; # Ubah ke true untuk mengaktifkan GNOME
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   system.stateVersion = "24.11";
