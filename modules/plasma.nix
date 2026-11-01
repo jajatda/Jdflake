@@ -21,6 +21,14 @@
   # services.xserver.enable = true; sudah di set di configuration.nix
 
   # ======================
+    # Pakai Seahorse (bukan ksshaskpass)
+    # ======================
+    #programs.ssh.askPassword = lib.mkForce "${pkgs.seahorse}/libexec/seahorse/ssh-askpass";
+
+    # Memaksa penggunaan ksshaskpass milik KDE Plasma
+    programs.ssh.askPassword = lib.mkForce "${pkgs.kdePackages.ksshaskpass}/bin/ksshaskpass";
+
+  # ======================
   # Exclude packages yang tidak dibutuhkan
   # ======================
   environment.plasma6.excludePackages = with pkgs.kdePackages; [
@@ -66,7 +74,15 @@
     # Opsional tapi recommended
     kdePackages.kdeconnect-kde     # kalau mau connect ke HP
     # kdePackages.discover         # software center (kalau pakai flatpak)
+
+    kdePackages.kio-fuse
+    maliit-keyboard
+    onboard
+    CuboCore.corekeyboard
   ];
+
+  services.gvfs.enable = true;
+  services.udisks2.enable = true; 
 
   # ======================
   # Beberapa setting yang biasanya bagus
