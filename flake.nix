@@ -6,6 +6,7 @@
     nixpkgs.url = "nixpkgs/nixos-26.05";
     nixpkgs-2511.url = "github:NixOS/nixpkgs/2c3e5ec5df46d3aeee2a1da0bfedd74e21f4bf3a";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+    webdev.url = "github:NixOS/nixpkgs/nixos-unstable";
     home-manager = {
       # url = "github:nix-community/home-manager";
       url = "github:nix-community/home-manager/release-26.05";
@@ -40,7 +41,7 @@
 
   };
 
-  outputs = { self, nixpkgs, nixpkgs-2511, nixpkgs-unstable, home-manager, chadwm-src, ... }@inputs: {
+  outputs = { self, nixpkgs, nixpkgs-2511, nixpkgs-unstable, webdev, home-manager, chadwm-src, ... }@inputs: {
     nixosConfigurations.x230t = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       specialArgs = { 
@@ -52,6 +53,11 @@
         };
 
         pkgs-unstable = import nixpkgs-unstable {
+            system = "x86_64-linux";
+            config.allowUnfree = true;
+        };
+
+        webdev = import webdev {
             system = "x86_64-linux";
             config.allowUnfree = true;
         };
@@ -97,6 +103,7 @@
   
         #   })  
         ./modules/gnome.nix
+        ./modules/plasma.nix
         ./modules/latex-arabic.nix
         ./modules/php.nix
         ./modules/vm.nix
