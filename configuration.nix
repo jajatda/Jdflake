@@ -98,7 +98,7 @@
     };
   };
   services.xserver.windowManager.dwm = {
-    enable = true;
+    enable = false;
     package = pkgs.dwm.overrideAttrs (old: {
       src = ./config/chadwm/chadwm;
 
@@ -111,7 +111,7 @@
       ];
     });
   };
-  services.xserver.desktopManager.xfce.enable = true;
+  services.xserver.desktopManager.xfce.enable = false;
   # services.desktopManager.plasma6.enable = true;
 
 
@@ -120,9 +120,6 @@
 
   systemd.user.services.niri-flake-polkit.enable = false;
 
-
-
-  # programs.adb.enable = true;
 
   users.users.jd = {
     isNormalUser = true;
