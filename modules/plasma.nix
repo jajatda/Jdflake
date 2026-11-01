@@ -83,6 +83,7 @@
 
   services.gvfs.enable = true;
   services.udisks2.enable = true; 
+  services.blueman.enable = true; # bluetooth manager
 
   # ======================
   # Beberapa setting yang biasanya bagus

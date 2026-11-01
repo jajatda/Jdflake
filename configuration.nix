@@ -51,6 +51,9 @@
   networking.hostName = "x230t";
   networking.networkmanager.enable = true;
 
+  hardware.bluetooth.enable = true;
+  hardware.bluetooth.powerOnBoot = true; # Menyalakan bluetooth otomatis saat booting
+
   time.timeZone = "Africa/Cairo";
 
   # Select internationalisation properties.
@@ -117,6 +120,7 @@
 
   services.gnome.gnome-keyring.enable = true;
   services.gnome.gcr-ssh-agent.enable = false;
+  
 
   systemd.user.services.niri-flake-polkit.enable = false;
 
