@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, ... }:
+{ config, pkgs, pkgs-unstable, inputs, ... }:
 
 {
   home.username = "jd";
@@ -9,7 +9,11 @@
     enable = true;
     shellAliases = {
       btw = "echo i use nixos, btw";
+      ixrouter = "$HOME/.npm-packages/bin/9router";
     };
+    # sessionVariables = {
+    #   PATH = "$HOME/.npm-packages/bin:$PATH";
+    # };
   };
   imports = [
     ./modules/terminal.nix
@@ -72,6 +76,7 @@
   # '';
 
 
+
   home.packages = with pkgs; [
     evince
     # vlc
@@ -86,6 +91,12 @@
     inputs.zen-browser.packages."${system}".default
     # inputs.nixpkgs-unstable.brave
     # apacheOpenOffice
+    # inputs.nixpkgs-unstable.yt-dlp
+    # kdePackages.okular
+
+    # Development tools
+    postgresql
+    redis
   ];
 
   dconf.settings = {
