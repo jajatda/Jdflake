@@ -200,10 +200,10 @@
     webdev.nodejs
     gcc
 
-    #java
+    # java tools
     jdk
 
-    #rust
+    #rust tools
     rustup
     rust-analyzer
     pkg-config
@@ -224,7 +224,7 @@
 
     python3
     uv
-    bento4
+    bento4 # video processing library
 
 
   
@@ -240,7 +240,7 @@
   };
 
   programs.nix-ld.enable = true;
-  programs.steam.enable = true;
+  programs.steam.enable = false;
 
   programs.obs-studio = {
     enable = true;
