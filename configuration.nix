@@ -1,4 +1,4 @@
-{ config, lib, pkgs, inputs, pkgs-2511, pkgs-unstable,... }:
+{ config, lib, pkgs, inputs, pkgs-2511, pkgs-unstable, webdev,... }:
 
 {
   imports =
@@ -116,6 +116,9 @@
     });
   };
   services.xserver.desktopManager.xfce.enable = true;
+  # services.desktopManager.plasma6.enable = true;
+
+
   services.gnome.gnome-keyring.enable = true;
   services.gnome.gcr-ssh-agent.enable = false;
 
@@ -129,7 +132,7 @@
     isNormalUser = true;
     # uid = 1000;
     description = "jd";
-    extraGroups = [ "networkmanager" "wheel" "adbusers" "docker" ];
+    extraGroups = [ "networkmanager" "wheel" "adbusers" "docker" "kvm"];
     packages = with pkgs; [];
   };
 
@@ -173,6 +176,7 @@
     inkscape
     telegram-desktop
     pkgs-unstable.vscode
+    pkgs-unstable.postman
     pkgs-unstable.firefox
     pkgs-unstable.brave
     vlc
@@ -190,6 +194,7 @@
     unrar
     p7zip
     ffmpeg
+    pkgs-unstable.yt-dlp
 
 
     neovim
@@ -199,7 +204,7 @@
     ripgrep
     nil
     nixpkgs-fmt
-    nodejs
+    webdev.nodejs
     gcc
 
     #java
@@ -223,6 +228,10 @@
     emacs         # Menambahkan Emacs dasar
     # ripgrep       # Sangat direkomendasikan oleh Doom | sudah ada
     fd            # Sangat direkomendasikan oleh Doom
+
+    python3
+    uv
+    bento4
 
 
   
